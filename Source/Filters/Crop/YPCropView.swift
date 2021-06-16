@@ -43,6 +43,7 @@ class YPCropView: UIView {
         
         setupViewHierarchy()
         setupLayout(with: image, ratio: ratio)
+        setupImage(image, with: ratio)
         applyStyle()
         imageView.image = image
         containerView.clipsToBounds = true
@@ -114,7 +115,10 @@ class YPCropView: UIView {
         let complementRatio: CGFloat = CGFloat(1.0 / ratio)
         cropArea.Height == cropArea.Width * complementRatio
         cropArea.centerInContainer()
-
+    }
+    
+    private func setupImage(_ image: UIImage, with ratio: Double) {
+        
         // Fit image differently depnding on its ratio.
         let imageRatio: Double = Double(image.size.width / image.size.height)
         if ratio > imageRatio {
